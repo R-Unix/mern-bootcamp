@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+const crypto = require('crypto');
+const uuidv1 = require('uuid/v1');
 
   var userSchema = new mongoose.Schema({
     name:{
@@ -35,13 +37,13 @@ var mongoose = require('mongoose');
     purchases:{
         type: Array,
         default: [],
-    },
+    }, 
   }, {timestamps: true});
 
 
-userSchema.method = {
+userSchema.methods= {
     securePassword: function(plainpassword){
-        if(!password) return "";
+        if(!plainpassword) return "";
         try {
             return crypto
             .createHmap("sha256", this.salt)
@@ -54,4 +56,4 @@ userSchema.method = {
 }
 
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("User", userSchema); 
