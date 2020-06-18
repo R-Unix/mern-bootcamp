@@ -24,7 +24,6 @@ const uuidv1 = require('uuid/v1');
         type: String,
         trim: true,
     },
-    //TODO: comeback here
     encry_password:{
         type: String,
         required: true,
@@ -38,10 +37,25 @@ const uuidv1 = require('uuid/v1');
         type: Array,
         default: [],
     }, 
-  }, {timestamps: true});
+  }, { timestamps: true });
 
+userSchema
+    .virtual("password")
+    .set(function(password){
+      this._password = password;
+      this.salt = uuidv1();
+      this.encry_password = this.securePassword(password);
+  })
+  .get(function(){
+      return this._password;
+  })
 
 userSchema.methods= {
+
+    authenticate: function(plainpassword){
+        return this.securePassword(plainpassword) === this.encry_password;
+    },
+
     securePassword: function(plainpassword){
         if(!plainpassword) return "";
         try {
