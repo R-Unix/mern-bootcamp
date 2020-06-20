@@ -8,7 +8,11 @@ exports.signup = (req, res) => {
                 err: "Not able to save user in Databse"
             });
         }
-        res.json(user);
+        res.json({
+            name: user.name,
+            email: user.email,
+            id: user._id
+          });
     });
 };
 
@@ -17,5 +21,3 @@ exports.signout = (req, res) => {
         message: "User signout",
     });
 };
-
-

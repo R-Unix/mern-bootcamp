@@ -15,7 +15,7 @@ mongoose.connect(process.env.DATABASE, {
     useUnifiedTopology: true,
     useCreateIndex: true,
 }).then(() =>{
-    console.log("Database is connected successfully !");
+    console.log("Database is connected successfully");
 });
 
 // Middelwares 
@@ -32,5 +32,5 @@ const port = process.env.PORT || 8000;
 
 // Starting a Server
 app.listen(port, () => {
-    console.log(`app is running at port number ${port} ...`);
+    console.log(`app is running at ${port} `);
 })
