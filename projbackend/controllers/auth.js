@@ -9,9 +9,9 @@ exports.signup = (req, res) => {
             });
         }
         res.json({
+            id: user._id,
             name: user.name,
             email: user.email,
-            id: user._id
           });
     });
 };
