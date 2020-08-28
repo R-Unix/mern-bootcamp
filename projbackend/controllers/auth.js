@@ -1,8 +1,8 @@
 const User = require("../models/user");
 const { check, validationResult } = require('express-validator');
 const user = require("../models/user");
-var jwt = required('jsonwebtoken');
-var expressJwt = required('express-jwt');
+var jwt = require('jsonwebtoken');
+var expressJwt = require('express-jwt');
 
 exports.signup = (req, res) => {
 
@@ -32,13 +32,17 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
     const {email, password} = req.body;  //this will extract email and password from request body
     
-    if(!errors.isEmpty()){
+    if(!errors.isEmpty()){                  // Validation part Error responce
         return res.status(422).json({
             error: errors.array()[0].msg
         });
     }
 
+<<<<<<< HEAD
     User.findOne({email}, (err, user)=> {
+=======
+    User.findOne({email}, (err, user)=> {                //find one is function of mongo db
+>>>>>>> cb7411531b75cc46aac521bf1468651a4ab07040
         if (err) {
             res.status(400).json({
                 error: "User email does not exists in records",
@@ -49,6 +53,10 @@ exports.signin = (req, res) => {
                 error: "Email and password do not match",
             })
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> cb7411531b75cc46aac521bf1468651a4ab07040
 
         //create token
         const token = jwt.sign({_id: user._id}, process.env.SECRET);
