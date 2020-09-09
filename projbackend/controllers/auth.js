@@ -38,11 +38,7 @@ exports.signin = (req, res) => {
         });
     }
 
-<<<<<<< HEAD
-    User.findOne({email}, (err, user)=> {
-=======
     User.findOne({email}, (err, user)=> {                //find one is function of mongo db
->>>>>>> cb7411531b75cc46aac521bf1468651a4ab07040
         if (err) {
             res.status(400).json({
                 error: "User email does not exists in records",
@@ -53,10 +49,6 @@ exports.signin = (req, res) => {
                 error: "Email and password do not match",
             })
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> cb7411531b75cc46aac521bf1468651a4ab07040
 
         //create token
         const token = jwt.sign({_id: user._id}, process.env.SECRET);
